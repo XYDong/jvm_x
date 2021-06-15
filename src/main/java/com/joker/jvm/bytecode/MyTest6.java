@@ -9,7 +9,7 @@ package com.joker.jvm.bytecode;
  * 2.找到了与常量池中的方法描述符与方法名称相同的方法，并且访问权限校验通过，直接返回实际类型的对象的方法的直接引用
  *
  * 比较方法重载和方法重写，我们可以得到这两个
- * 方法重载是静态的
+ * 方法重载是静态的，是编译期行为；方法重写是动态的，是运行期行为。
  */
 public class MyTest6 {
     public static void main(String[] args) {

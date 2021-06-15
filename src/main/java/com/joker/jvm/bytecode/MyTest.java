@@ -26,6 +26,8 @@ package com.joker.jvm.bytecode;
  * 3. 构造方法
  * 4. 私有方法
  *
+ * 以上4种方法称为 非虚方法，它们在类加载阶段就可以将符号引用转换为直接引用。
+ *
  */
 public class MyTest {
     public static void test(){

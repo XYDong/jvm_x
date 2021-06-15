@@ -1,15 +1,17 @@
 package com.joker.jvm.memory;
 
+import java.util.ArrayList;
+import java.util.List;
 /**
- * 虚拟机： stack frame 栈帧：每个方法执行时，都会生成与方法相关的栈帧（方法独有的）
+ * 虚拟机栈： stack frame 栈帧：每个方法执行时，都会生成与方法相关的栈帧（方法独有的）
  * 程序计数器（program counter）：用于程序在执行时，告诉程序下一行该执行哪一行字节码
  * 本地方法栈：（native method）：主要用于处理本地方法
  * 堆（Heap):绝大多数对象在堆上，是JVM管理的最大的一块内存，所有线程共享的区域，虚拟机创建时就从操作
  *          系统中申请下来，用于存放对象实例。与堆相关的一个重要概念是垃圾收集器（garbage collector)。现代几乎所
- *          有的垃圾收集器都是采用分代手机算法，堆空间也做了相应的划分：新生代和老年代。Eden空间， From Survivor
- *          空间 与 To Survivor空间。
+ *          有的垃圾收集器都是采用分代收集算法，堆空间也做了相应的划分：新生代和老年代。Eden空间， From Survivor
+ *          空间 与 To Survivor空间。 线程共享的
  * 方法区：（method Area） 存储元信息。永久代（Permanent Generation），从JDK1.8，永久代已经废除了，使用元空间
- *         代替（mate space）
+ *         代替（mate space） 线程共享的
  * 运行时常量池：方法区的一部分。
  * 直接内存：(Direct memory) 堆外内存，与NIO密切相关，JVM通过堆上的DirectByteBuffer来直接操作内存。
  *
@@ -25,8 +27,6 @@ package com.joker.jvm.memory;
  *                             2.引用直接指向堆中的对象的实例数据，元数据指向方法区中的类型数据
  */
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * new 关键字创建对象的3个过程：
@@ -37,7 +37,7 @@ import java.util.List;
  *
  * 指针碰撞（前提是堆空间通过一个指针分隔，一侧是已被占用的空间，；另一侧是未被占用的空间）
  * 空闲列表（前提是堆内存空间中已被使用和未被使用的空间是交织在一起的，虚拟机就需要通过一个列表来记录哪些空间
- * 是可以使用的，哪些是已被使用的，接下来找出可以容纳下新创建对象的且未被使用的空间，在此哦空间存放该对象，
+ * 是可以使用的，哪些是已被使用的，接下来找出可以容纳下新创建对象的且未被使用的空间，在此空间存放该对象，
  * 同时还要修改列表上的记录）
  *
  *
